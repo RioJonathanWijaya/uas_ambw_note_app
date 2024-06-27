@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/boxes.dart';
+import 'package:note_app/lock.dart';
+import 'package:note_app/model/pin.dart';
 import 'package:note_app/note.dart';
 import 'package:note_app/model/note.dart';
 
@@ -9,12 +11,12 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(NoteAdapter());
 
-  // Hive.deleteBoxFromDisk('notes');
+  // Hive.deleteBoxFromDisk('pin');
 
   notebox = await Hive.openBox<Note>('notes');
   pinbox = await Hive.openBox<String>('pin');
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: const notesView(),
+        body: const pinView(),
       ),
       debugShowCheckedModeBanner: false,
     );

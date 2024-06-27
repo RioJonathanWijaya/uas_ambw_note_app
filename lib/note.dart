@@ -6,6 +6,7 @@ import 'package:note_app/boxes.dart';
 import 'package:note_app/model/note.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:note_app/newLock.dart';
 
 class notesView extends StatefulWidget {
   const notesView({super.key});
@@ -219,13 +220,27 @@ class _notesViewState extends State<notesView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text("Notes",
-                    style: GoogleFonts.montserrat(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text("Notes",
+                        style: GoogleFonts.montserrat(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black)),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.settings),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const newPinView()));
+                    },
+                  ),
+                ],
               ),
               Column(
                 children: noteList.map((e) {
